@@ -1,26 +1,26 @@
 name: End-to-end tests
 on: push
 jobs:
-  cypress-run:
-    runs-on: ubuntu-22.04
+  test:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'  # Use the appropriate Node.js version for your project
+          node-version: '16'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Start application server
+      - name: Start application
         run: npm run dev &
         env:
-          NODE_ENV: development
+          CYPRESS_BASE_URL: http://localhost:5174
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          start: npm run dev
+      - name: Run Cypress tests
+        run: npm test
+        env:
+          CYPRESS_BASE_URL: http://localhost:5174
