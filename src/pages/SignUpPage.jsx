@@ -1,5 +1,4 @@
 // src/pages/SignUpPage.js
-import React from "react";
 import {
   Container,
   Typography,

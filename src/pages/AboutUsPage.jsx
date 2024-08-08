@@ -1,5 +1,4 @@
 // src/pages/AboutUsPage.js
-import React from "react";
 import { Container, Typography, Grid, Paper, Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Fade from "@mui/material/Fade";

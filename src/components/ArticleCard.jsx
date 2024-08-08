@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import { Card, CardContent, Typography, styled } from "@mui/material";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -40,7 +40,7 @@ const StyledCardImage = styled("div")({
 });
 
 const ArticleCard = ({
-  title,
+  title, 
   summary,
   category,
   author,
