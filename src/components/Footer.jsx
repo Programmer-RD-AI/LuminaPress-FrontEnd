@@ -1,5 +1,4 @@
-import React from "react";
-import { Box, Typography, Link, IconButton, styled } from "@mui/material";
+import { Typography, IconButton, styled } from "@mui/material";
 import { motion } from "framer-motion";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -7,82 +6,10 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import "../assets/styles/Footer.css"; // Import the CSS file
 
-// Styled components
-const FooterContainer = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.grey[900],
-  color: theme.palette.common.white,
-  padding: "20px",
-  textAlign: "center",
-  position: "relative",
-  bottom: 0,
-  width: "100%",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-}));
-
-const FooterContent = styled(Box)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "flex-start",
-  flexDirection: "row",
-  maxWidth: "1200px",
-  width: "100%",
-  marginBottom: "20px",
-  [theme.breakpoints.down("md")]: {
-    flexDirection: "column",
-    alignItems: "center",
-  },
-}));
-
-const DescriptionSection = styled(Box)(({ theme }) => ({
-  flex: "0 1 50%",
-  textAlign: "left",
-  [theme.breakpoints.down("md")]: {
-    textAlign: "center",
-    marginBottom: "20px",
-  },
-}));
-
-const InfoSection = styled(Box)(({ theme }) => ({
-  flex: "0 1 50%",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  [theme.breakpoints.down("md")]: {
-    alignItems: "center",
-  },
-}));
-
-const SocialMediaContainer = styled(Box)(({ theme }) => ({
-  display: "flex",
-  justifyContent: "center",
-  marginBottom: "20px",
-}));
-
 const SocialIconButton = styled(IconButton)(({ theme }) => ({
   color: theme.palette.common.white,
   margin: "0 10px",
   "&:hover": {
-    color: theme.palette.primary.light,
-  },
-}));
-
-const FooterDescription = styled(Typography)(({ theme }) => ({
-  marginBottom: "20px",
-  maxWidth: "100%",
-  fontSize: "14px",
-  lineHeight: "1.6",
-}));
-
-const FooterLink = styled(Link)(({ theme }) => ({
-  color: theme.palette.common.white,
-  textDecoration: "none",
-  margin: "0 10px",
-  fontWeight: 500,
-  "&:hover": {
-    textDecoration: "underline",
     color: theme.palette.primary.light,
   },
 }));

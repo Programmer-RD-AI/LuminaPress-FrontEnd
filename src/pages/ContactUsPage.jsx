@@ -1,5 +1,4 @@
 // src/pages/ContactUsPage.js
-import React from "react";
 import {
   Container,
   Typography,

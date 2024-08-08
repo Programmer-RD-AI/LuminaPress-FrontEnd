@@ -1,4 +1,3 @@
-import React from "react";
 import ArticleCard from "./ArticleCard";
 import { Box, Typography } from "@mui/material";
 import { articles } from "../data/articles";

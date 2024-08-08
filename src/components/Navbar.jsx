@@ -4,7 +4,6 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  Button,
   IconButton,
   Menu,
   MenuItem,
@@ -27,12 +26,6 @@ const StyledToolbar = styled(Toolbar)({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-});
-
-const NavLinks = styled(Box)({
-  display: "flex",
-  alignItems: "center",
-  gap: "16px",
 });
 
 const AuthButtons = styled(Box)({
