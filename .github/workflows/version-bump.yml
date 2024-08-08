@@ -1,0 +1,30 @@
+name: Version Bump
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  bump-version:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Bump version and create release
+      run: |
+        npm version patch
+        npm run build
+        git push --follow-tags
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
