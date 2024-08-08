@@ -24,33 +24,36 @@ LuminaPress FrontEnd is the frontend application for LuminaPress, developed usin
 ### Installation
 
 1. Clone the repository:
-    ```sh
-    git clone https://github.com/LuminaPress/LuminaPress-FrontEnd.git
-    ```
+   ```sh
+   git clone https://github.com/LuminaPress/LuminaPress-FrontEnd.git
+   ```
 2. Navigate to the project directory:
-    ```sh
-    cd LuminaPress-FrontEnd
-    ```
+   ```sh
+   cd LuminaPress-FrontEnd
+   ```
 3. Install the dependencies:
-    ```sh
-    npm install
-    # or
-    yarn install
-    ```
+   ```sh
+   npm install
+   # or
+   yarn install
+   ```
 
 ### Running the Application
 
 To start the development server, use:
+
 ```sh
 npm start
 # or
 yarn start
 ```
+
 This will launch the application in your default web browser.
 
 ### Running Tests
 
 To run end-to-end tests with Cypress, use:
+
 ```sh
 npx cypress open
 # or
@@ -60,6 +63,7 @@ yarn cypress open
 ### Building for Production
 
 To create a production build, use:
+
 ```sh
 npm run build
 # or
