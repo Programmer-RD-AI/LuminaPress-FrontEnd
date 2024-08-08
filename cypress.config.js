@@ -1,18 +1,18 @@
-import { defineConfig } from "cypress";
+import { defineConfig } from 'cypress'
 
 export default defineConfig({
   projectId: 'si3213',
   e2e: {
-    baseUrl: "http://localhost:5173",
-    setupNodeEvents(on, config) {
+    baseUrl: 'http://localhost:5173',
+    setupNodeEvents (on, config) {
       // Implement node event listeners here
-    },
+    }
   },
 
   component: {
     devServer: {
-      framework: "react",
-      bundler: "vite",
-    },
-  },
-});
+      framework: 'react',
+      bundler: 'vite'
+    }
+  }
+})
