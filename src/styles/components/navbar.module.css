@@ -1,0 +1,317 @@
+/* General Header Styling */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #000;
+  color: white;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.logo_wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.logoText {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  position: relative;
+}
+
+.navItems {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.navLink {
+  cursor: pointer;
+  font-size: 18px;
+  padding: 10px;
+  color: #ddd;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.navLink:hover {
+  color: #fff;
+}
+
+.categories {
+  position: relative;
+  font-weight: bold;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #111;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  z-index: 10;
+  width: 200px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.dropdownItem {
+  padding: 10px;
+  color: #ddd;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.dropdownItem:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Search and Auth Wrapper */
+.authSearchWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.searchIcon {
+  color: #ddd;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.searchInput {
+  padding: 10px 15px;
+  border: none;
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+  margin-left: 10px;
+  width: 250px;
+  font-weight: bold;
+}
+
+.authSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profileWrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.profileInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+  background-color: transparent;
+}
+
+.profileInfo:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.profileIcon {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.profileName {
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.profileDropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 200px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+  z-index: 1000;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profileDropdown::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 24px;
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  transform: rotate(45deg);
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.profileDropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: #333;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+  font-size: 0.9rem;
+  width: 100%;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.profileDropdownItem:hover {
+  background-color: #f5f5f5;
+}
+
+.loginButton,
+.signupButton {
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.loginButton {
+  color: #fff;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.loginButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.signupButton {
+  color: #000;
+  background-color: #fff;
+}
+
+.signupButton:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-1px);
+}
+
+/* navbar.module.css */
+.themeToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 8px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+/* Dark mode styles */
+.themeToggle {
+  color: #b0b0b0;
+  background-color: transparent;
+}
+
+.themeToggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.themeToggle:active {
+  transform: scale(0.95);
+}
+
+/* Light mode styles (you can adjust these) */
+.darkMode .themeToggle {
+  color: #333;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.darkMode .themeToggle:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #000;
+}
+
+/* Theme toggle icon specific styling */
+.themeToggle svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.themeToggle:hover svg {
+  transform: rotate(180deg);
+}
+
+/* Subtle animation for theme switching */
+@keyframes themeToggleAnimation {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.2);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.themeToggle:active svg {
+  animation: themeToggleAnimation 0.5s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .themeToggle {
+    margin-left: 5px;
+    padding: 6px;
+  }
+
+  .themeToggle svg {
+    width: 18px;
+    height: 18px;
+  }
+}

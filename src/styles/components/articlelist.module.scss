@@ -1,0 +1,316 @@
+@import '../variables';
+
+.sub_articles_section_wrapper {
+  margin-top: 40px; // Add space between top section and sub articles
+}
+
+.article_list {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 20px 0;
+
+    @media only screen and (min-width: 864px) {
+      flex-direction: row;
+      gap: 36px;
+    }
+
+    .left_side {
+      margin-bottom: 30px;
+      flex: 2;
+
+      @media only screen and (min-width: 864px) {
+        margin-bottom: 0;
+      }
+
+      .img_wrapper {
+        img {
+          width: 100%;
+          height: 400px;
+          object-fit: cover;
+          border-radius: 8px;
+        }
+      }
+
+      .text_wrapper {
+        margin-top: 8px; // Decrease space between the [New] label and article text
+
+        .title {
+          font-size: 36px;
+          font-weight: 800;
+          line-height: 1.2;
+        }
+
+        .text {
+          margin-top: 20px;
+          line-height: 1.6;
+          color: $dark-grayish-blue;
+
+          .btn {
+            background-color: $soft-red;
+            padding: 12px 24px;
+            font-weight: 700;
+            color: $off-white;
+            letter-spacing: 1px;
+            cursor: pointer;
+            display: inline-block;
+            transition: background-color 0.2s ease;
+            text-align: center;
+
+            &:hover {
+              background-color: $very-dark-blue;
+            }
+          }
+        }
+      }
+    }
+
+    .right_side_wrapper {
+      background-color: $very-dark-blue;
+      padding: 20px;
+      border-radius: 8px;
+      height: fit-content;
+      flex: 1;
+
+      .right_side {
+        padding: 0 20px;
+      }
+
+      .sidebar_title {
+        color: $soft-orange;
+        font-size: 28px;
+        font-weight: 700;
+        padding-bottom: 15px;
+      }
+
+      .news_wrapper {
+        margin-top: 8px; // Reduced space between the sidebar title and the articles
+        margin-bottom: 16px; // Space below the news section
+
+        .news {
+          border-bottom: 1px solid $dark-grayish-blue;
+          margin-bottom: 12px; // Adjust space between news articles
+          padding-bottom: 10px; // Add padding below each article for better spacing
+
+          &:last-child {
+            border-bottom: none; // Remove border for the last article
+          }
+
+          .news_title {
+            padding-top: 10px; // Reduce padding at the top of the article title
+
+            span {
+              color: $off-white;
+              font-size: 16px;
+              font-weight: 700;
+              cursor: pointer;
+              transition: color 0.2s ease;
+
+              &:hover {
+                color: $soft-orange;
+              }
+            }
+          }
+
+          // Optional: Add a description if needed
+          .news_description {
+            color: $grayish-blue;
+            font-size: 14px;
+            padding: 5px 0; // Adjust padding for description
+          }
+        }
+      }
+
+    }
+  }
+
+  .additional_articles {
+    max-width: 90%;
+    margin: 40px auto;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(1, 1fr); // Default single column for smaller screens
+
+    @media only screen and (min-width: 600px) {
+      grid-template-columns: repeat(2, 1fr); // Two columns on medium screens
+    }
+
+    @media only screen and (min-width: 864px) {
+      grid-template-columns: repeat(3, 1fr); // Three columns for larger screens
+    }
+
+    .article {
+      display: flex;
+      flex-direction: column;
+      padding: 15px;
+      border-radius: 8px;
+      background-color: $very-dark-blue;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .article_left {
+        margin-bottom: 10px;
+
+        img {
+          width: 100%;
+          height: 150px;
+          object-fit: cover;
+          border-radius: 8px;
+          transition: transform 0.3s ease;
+
+          &:hover {
+            transform: scale(1.05);
+          }
+        }
+      }
+
+      .article_text_wrapper {
+        display: flex;
+        flex-direction: column;
+
+        .article_number {
+          font-weight: bold;
+          color: $grayish-blue;
+          font-size: 24px;
+          margin-bottom: 10px;
+        }
+
+        .article_title {
+          font-size: 18px;
+          font-weight: 800;
+          color: $off-white;
+          margin-bottom: 10px;
+          cursor: pointer;
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: $soft-red;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+          }
+        }
+
+        .article_text {
+          color: $dark-grayish-blue;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+}
+
+
+.sub_articles_section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  .sub_article {
+    display: flex;
+    width: calc(33.333% - 20px); // 3 articles per row
+    background-color: $very-dark-blue;
+    border-radius: 12px; // Slightly larger border radius
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, width 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    // Hover effect: card grows and shadow intensifies
+    &:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .image_wrapper {
+      flex: 1;
+      max-width: 35%; // Increased image width for a larger image display
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .content_wrapper {
+      flex: 2; // Adjusted content width for a better text-to-image balance
+      padding: 20px; // Increased padding for more spacious text
+      display: flex;
+      flex-direction: column;
+
+      .sub_article_title {
+        font-size: 20px; // Slightly larger font for the title
+        font-weight: 800;
+        color: $off-white;
+        margin-bottom: 5px; // Reduced space between title and description
+        cursor: pointer;
+        transition: color 0.2s ease, text-shadow 0.2s ease;
+
+        &:hover {
+          color: $soft-orange;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+      }
+
+      .sub_article_description {
+        color: $dark-grayish-blue;
+        font-size: 15px; // Slightly larger font for better readability
+        line-height: 1.6;
+      }
+    }
+  }
+
+  // Responsive design
+  @media only screen and (max-width: 768px) {
+    .sub_article {
+      width: calc(50% - 10px); // 2 articles per row
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    .sub_article {
+      width: 100%; // 1 article per row
+    }
+  }
+}
+
+
+
+.loading_screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #555;
+
+  /* Example spinner */
+  &::after {
+    content: "";
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    border: 4px solid #ccc;
+    border-top: 4px solid #000;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

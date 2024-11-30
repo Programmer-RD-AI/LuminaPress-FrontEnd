@@ -1,0 +1,190 @@
+:root {
+    --cosmic-dark-blue: #0b1321;
+    --cosmic-deep-purple: #1a2138;
+    --cosmic-bright-blue: #4a90e2;
+    --cosmic-neon-green: #00ff9c;
+    --cosmic-text-light: #e0e4eb;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', 'Arial', sans-serif;
+    background-color: var(--cosmic-dark-blue);
+    color: var(--cosmic-text-light);
+}
+
+.cosmic-admin-container {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(135deg,
+            rgba(26, 33, 56, 0.9) 0%,
+            rgba(11, 19, 33, 0.9) 100%);
+}
+
+.cosmic-sidebar {
+    width: 250px;
+    background-color: var(--cosmic-deep-purple);
+    border-right: 1px solid rgba(74, 144, 226, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo h2 {
+    color: var(--cosmic-bright-blue);
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-item {
+    background: transparent;
+    border: none;
+    color: var(--cosmic-text-light);
+    text-align: left;
+    padding: 12px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background-color: rgba(74, 144, 226, 0.2);
+    color: var(--cosmic-bright-blue);
+}
+
+.nav-item.logout {
+    margin-top: auto;
+    color: #ff6b6b;
+}
+
+.cosmic-main-content {
+    flex-grow: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.cosmic-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(74, 144, 226, 0.1);
+}
+
+.cosmic-header h1 {
+    color: var(--cosmic-bright-blue);
+    font-weight: 300;
+    margin: 0;
+}
+
+.cosmic-section {
+    background-color: var(--cosmic-deep-purple);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.cosmic-section h2 {
+    color: var(--cosmic-bright-blue);
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(74, 144, 226, 0.2);
+    padding-bottom: 10px;
+}
+
+.key-generator,
+.config-generator {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.key-generator input,
+.key-generator select,
+.config-generator input,
+.config-generator select {
+    flex-grow: 1;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(74, 144, 226, 0.2);
+    color: var(--cosmic-text-light);
+    border-radius: 5px;
+}
+
+.key-generator button,
+.config-generator button {
+    padding: 10px 15px;
+    background-color: var(--cosmic-bright-blue);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.key-generator button:hover,
+.config-generator button:hover {
+    background-color: var(--cosmic-neon-green);
+}
+
+.keys-list,
+.configurations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.key-item,
+.config-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid rgba(74, 144, 226, 0.1);
+}
+
+.key-details,
+.config-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.delete-key,
+.delete-config {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.config-status {
+    font-size: 0.8em;
+    padding: 3px 8px;
+    border-radius: 12px;
+}
+
+.config-status.active {
+    background-color: rgba(0, 255, 156, 0.2);
+    color: var(--cosmic-neon-green);
+}
+
+.config-status.pending {
+    background-color: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+}

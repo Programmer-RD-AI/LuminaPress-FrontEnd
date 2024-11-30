@@ -1,0 +1,102 @@
+/* Previous CSS remains the same until articles-section */
+
+.content-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.tab-button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background: #f8f9fa;
+    color: #6c757d;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 600;
+}
+
+.tab-button:hover {
+    background: #e9ecef;
+}
+
+.tab-button.active {
+    background: #3498db;
+    color: white;
+}
+
+.comments-section {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment-article-group {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.comment-article-group:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.article-title {
+    color: #2c3e50;
+    margin: 0 0 1rem 0;
+    font-size: 1.25rem;
+}
+
+.comment-card {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    transition: transform 0.2s;
+}
+
+.comment-card:hover {
+    transform: translateY(-2px);
+}
+
+.comment-card p {
+    margin: 0 0 1rem 0;
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+.comment-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+.likes {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.likes .icon {
+    color: #3498db;
+}
+
+@media (max-width: 768px) {
+    .content-tabs {
+        flex-direction: column;
+    }
+
+    .tab-button {
+        width: 100%;
+    }
+
+    .comment-card {
+        padding: 1rem;
+    }
+}

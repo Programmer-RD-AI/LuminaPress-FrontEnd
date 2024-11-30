@@ -1,0 +1,227 @@
+/* Comments.css */
+.engagement-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 0 0 1rem 1rem;
+}
+
+.dark .engagement-section {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.engagement-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.engagement-header h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, #ff3e00, #ff8700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.comment-count {
+    color: #666666;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 2rem;
+}
+
+.dark .comment-count {
+    color: #999999;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.comment-box {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.dark .comment-box {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.comment-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.comment-input {
+    width: 100%;
+    min-height: 120px;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    resize: vertical;
+    transition: all 0.2s ease;
+    background: rgba(255, 255, 255, 0.05);
+    color: inherit;
+}
+
+.dark .comment-input {
+    background: rgba(0, 0, 0, 0.2);
+    color: #ffffff;
+}
+
+.comment-input:focus {
+    outline: none;
+    border-color: #ff3e00;
+    box-shadow: 0 0 0 3px rgba(255, 62, 0, 0.1);
+}
+
+.submit-button {
+    background: linear-gradient(45deg, #ff3e00, #ff8700);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(255, 62, 0, 0.2);
+}
+
+.submit-button:active {
+    transform: translateY(0);
+}
+
+.submit-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: #ff3e00;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+/* New styles for comments list */
+.comments-list {
+    margin-top: 3rem;
+}
+
+.comment-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.dark .comment-item {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.comment-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.comment-author {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.author-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-right: 1rem;
+    border: 2px solid #ff3e00;
+}
+
+.author-info {
+    flex: 1;
+}
+
+.author-info h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    color: inherit;
+}
+
+.comment-date {
+    font-size: 0.9rem;
+    color: #666666;
+}
+
+.dark .comment-date {
+    color: #999999;
+}
+
+.comment-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: inherit;
+}
+
+.comment-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.like-button,
+.reply-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.dark .like-button,
+.dark .reply-button {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.like-button:hover,
+.reply-button:hover {
+    background: rgba(255, 62, 0, 0.1);
+    border-color: #ff3e00;
+}
+
+.heart-icon {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    transition: all 0.2s ease;
+}
+
+.like-button:hover .heart-icon {
+    stroke: #ff3e00;
+    transform: scale(1.1);
+}
