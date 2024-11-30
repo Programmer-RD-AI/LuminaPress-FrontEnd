@@ -17,18 +17,18 @@ const StyledSVG = styled.svg`
 `;
 
 const SunSpotLoader = ({
-  className = `sunspotloader`,
-  background = `transparent`,
-  gradientColors = [`#333`, `#555`],
-  shadowColor = `#444`,
-  shadowOpacity = `0.05`,
-  size = `64px`,
-  desktopSize = ``,
-  mobileSize = ``,
+  className = "sunspotloader",
+  background = "transparent",
+  gradientColors = ["#333", "#555"],
+  shadowColor = "#444",
+  shadowOpacity = "0.05",
+  size = "64px",
+  desktopSize = "",
+  mobileSize = "",
 }) => {
   let colorsToFill = [];
   if (gradientColors.constructor === String) {
-    if (gradientColors === ``) {
+    if (gradientColors === "") {
       gradientColors = "#FF4F59";
     }
     colorsToFill.push(gradientColors);

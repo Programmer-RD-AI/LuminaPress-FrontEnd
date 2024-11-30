@@ -90,16 +90,16 @@ const StyledBox = styled.div`
 `;
 
 const XLviLoader = ({
-  className = `xlviloader`,
-  backgound = `transparent`,
-  boxColors = [`#333`, `#444`, `#555`],
-  size = `64px`,
-  desktopSize = ``,
-  mobileSize = ``,
+  className = "xlviloader",
+  backgound = "transparent",
+  boxColors = ["#333", "#444", "#555"],
+  size = "64px",
+  desktopSize = "",
+  mobileSize = "",
 }) => {
   let colorsToFill = [];
   if (boxColors.constructor === String) {
-    if (boxColors === ``) {
+    if (boxColors === "") {
       boxColors = "#333";
     }
     colorsToFill.push(boxColors);
