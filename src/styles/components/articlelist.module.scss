@@ -1,4 +1,4 @@
-@import '../variables';
+@import "../variables";
 
 .sub_articles_section_wrapper {
   margin-top: 40px; // Add space between top section and sub articles
@@ -123,7 +123,6 @@
           }
         }
       }
-
     }
   }
 
@@ -132,7 +131,10 @@
     margin: 40px auto;
     display: grid;
     gap: 20px;
-    grid-template-columns: repeat(1, 1fr); // Default single column for smaller screens
+    grid-template-columns: repeat(
+      1,
+      1fr
+    ); // Default single column for smaller screens
 
     @media only screen and (min-width: 600px) {
       grid-template-columns: repeat(2, 1fr); // Two columns on medium screens
@@ -148,7 +150,9 @@
       padding: 15px;
       border-radius: 8px;
       background-color: $very-dark-blue;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
       &:hover {
@@ -204,9 +208,7 @@
       }
     }
   }
-
 }
-
 
 .sub_articles_section {
   display: flex;
@@ -219,7 +221,10 @@
     background-color: $very-dark-blue;
     border-radius: 12px; // Slightly larger border radius
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, width 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      width 0.3s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
     // Hover effect: card grows and shadow intensifies
@@ -251,7 +256,9 @@
         color: $off-white;
         margin-bottom: 5px; // Reduced space between title and description
         cursor: pointer;
-        transition: color 0.2s ease, text-shadow 0.2s ease;
+        transition:
+          color 0.2s ease,
+          text-shadow 0.2s ease;
 
         &:hover {
           color: $soft-orange;
@@ -280,8 +287,6 @@
     }
   }
 }
-
-
 
 .loading_screen {
   display: flex;

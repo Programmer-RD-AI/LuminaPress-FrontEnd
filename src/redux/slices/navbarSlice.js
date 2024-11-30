@@ -1,30 +1,30 @@
 // navbarSlice.js
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
 const navbarSlice = createSlice({
-  name: "navbar",
+  name: 'navbar',
   initialState: {
-    activeOn: "home",
+    activeOn: 'home',
     isAuthenticated: false,
     loading: false,
-    error: null,
+    error: null
   },
   reducers: {
     setActive: (state, action) => {
-      state.activeOn = action.payload;
+      state.activeOn = action.payload
     },
     setIsAuthenticated: (state, action) => {
-      state.isAuthenticated = action.payload;
+      state.isAuthenticated = action.payload
     },
     setLoading: (state, action) => {
-      state.loading = action.payload;
+      state.loading = action.payload
     },
     setError: (state, action) => {
-      state.error = action.payload;
-    },
-  },
-});
+      state.error = action.payload
+    }
+  }
+})
 
 export const { setActive, setIsAuthenticated, setLoading, setError } =
-  navbarSlice.actions;
-export default navbarSlice.reducer;
+  navbarSlice.actions
+export default navbarSlice.reducer

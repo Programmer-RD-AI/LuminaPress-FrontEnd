@@ -1,28 +1,28 @@
-import { useNavigate } from "react-router-dom";
-import styles from "../../../styles/components/articlelist.module.scss";
-import MainArticle from "./mainArticle";
-import SubArticles from "./subArticle";
-import SideArticleSection from "./sideArticleSection";
-import { getHighestResolutionImage } from "../../../utils/getHighestResolutionImage";
-import { useArticles } from "../../../hooks/useArticles";
+import { useNavigate } from 'react-router-dom'
+import styles from '../../../styles/components/articlelist.module.scss'
+import MainArticle from './mainArticle'
+import SubArticles from './subArticle'
+import SideArticleSection from './sideArticleSection'
+import { getHighestResolutionImage } from '../../../utils/getHighestResolutionImage'
+import { useArticles } from '../../../hooks/useArticles'
 
-export default function ArticleList() {
+export default function ArticleList () {
   // const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   // Select state from the Redux store
-  const { articles, articleType } = useArticles();
+  const { articles, articleType } = useArticles()
 
   const handleReadMore = (articleId) => {
-    navigate(`/a/${articleId}`);
-  };
+    navigate(`/a/${articleId}`)
+  }
 
   const highestResImage =
     articles.length > 0 && articles[0].Images
       ? getHighestResolutionImage(articles[0].Images)
-      : null;
+      : null
 
-  const isArray = Array.isArray(articles);
+  const isArray = Array.isArray(articles)
 
   return (
     <div className={styles.article_list}>
@@ -58,5 +58,5 @@ export default function ArticleList() {
         </div>
       </div>
     </div>
-  );
+  )
 }

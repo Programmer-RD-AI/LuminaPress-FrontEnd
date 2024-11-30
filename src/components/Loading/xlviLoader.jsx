@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
-import styled, { keyframes } from "styled-components";
-import { useMediaQuery } from "react-responsive";
+import styled, { keyframes } from 'styled-components'
+import { useMediaQuery } from 'react-responsive'
 // import "./xlviroundedloader.css";
 const Anim = (animParams) => keyframes`
 0% {
@@ -65,14 +65,14 @@ const Anim = (animParams) => keyframes`
     margin-top: ${animParams.mt[8]}px;
     margin-left: ${animParams.ml[8]}px;
 }
-`;
+`
 
 const StyledContainer = styled.div`
   background: ${(props) => props.background};
   width: ${(props) => props.sizeContainer}px;
   height: ${(props) => props.sizeContainer}px;
   padding: 20px;
-`;
+`
 
 const StyledBox = styled.div`
   box-sizing: border-box;
@@ -87,76 +87,76 @@ const StyledBox = styled.div`
   margin-left: ${(props) => props.boxParams.ml}px;
   animation: ${(props) => Anim(props.animParams)} 3s 0s forwards
     cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
-`;
+`
 
 const XLviLoader = ({
-  className = `xlviloader`,
-  backgound = `transparent`,
-  boxColors = [`#333`, `#444`, `#555`],
-  size = `64px`,
-  desktopSize = ``,
-  mobileSize = ``,
+  className = 'xlviloader',
+  backgound = 'transparent',
+  boxColors = ['#333', '#444', '#555'],
+  size = '64px',
+  desktopSize = '',
+  mobileSize = ''
 }) => {
-  let colorsToFill = [];
+  const colorsToFill = []
   if (boxColors.constructor === String) {
-    if (boxColors === ``) {
-      boxColors = "#333";
+    if (boxColors === '') {
+      boxColors = '#333'
     }
-    colorsToFill.push(boxColors);
+    colorsToFill.push(boxColors)
   }
   if (boxColors.constructor === Array) {
-    let asize = boxColors.length;
+    let asize = boxColors.length
     if (asize === 0) {
-      boxColors.push("#333");
-      asize = boxColors.length;
+      boxColors.push('#333')
+      asize = boxColors.length
     }
     for (let i = 0; i < 3; i += 1) {
-      if (i < asize) colorsToFill.push(boxColors[i]);
-      else colorsToFill.push(boxColors[asize - 1]);
+      if (i < asize) colorsToFill.push(boxColors[i])
+      else colorsToFill.push(boxColors[asize - 1])
     }
   }
 
-  const isDesktopOrLaptop = useMediaQuery({ query: "(min-width: 1224px)" });
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1224px)' })
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
 
-  var sizeFound = 0.0;
+  let sizeFound = 0.0
   if (isDesktopOrLaptop) {
-    if (desktopSize !== "") sizeFound = parseFloat(desktopSize);
-    else sizeFound = parseFloat(size) * 2;
+    if (desktopSize !== '') sizeFound = parseFloat(desktopSize)
+    else sizeFound = parseFloat(size) * 2
   }
 
   if (isTabletOrMobile) {
-    if (mobileSize !== "") sizeFound = parseFloat(mobileSize);
-    else sizeFound = parseFloat(size);
+    if (mobileSize !== '') sizeFound = parseFloat(mobileSize)
+    else sizeFound = parseFloat(size)
   }
 
-  let sizePassed = parseFloat(sizeFound);
-  let sizeContainer = (sizePassed * 112) / 64;
-  let sizeBorderRadius = (sizePassed * 24) / 64;
-  let sizeBorderThickness = (sizePassed * 16) / 64;
+  const sizePassed = parseFloat(sizeFound)
+  const sizeContainer = (sizePassed * 112) / 64
+  const sizeBorderRadius = (sizePassed * 24) / 64
+  const sizeBorderThickness = (sizePassed * 16) / 64
 
-  let box1Params = {
+  const box1Params = {
     w: (sizePassed * 112) / 64,
     h: (sizePassed * 48) / 64,
     mt: (sizePassed * 64) / 64,
-    ml: 0,
-  };
+    ml: 0
+  }
 
-  let box2Params = {
+  const box2Params = {
     w: (sizePassed * 48) / 64,
     h: (sizePassed * 48) / 64,
     mt: 0,
-    ml: 0,
-  };
+    ml: 0
+  }
 
-  let box3Params = {
+  const box3Params = {
     w: (sizePassed * 48) / 64,
     h: (sizePassed * 48) / 64,
     mt: 0,
-    ml: (sizePassed * 64) / 64,
-  };
+    ml: (sizePassed * 64) / 64
+  }
 
-  let anim1Params = {
+  const anim1Params = {
     w: [
       (sizePassed * 112) / 64,
       (sizePassed * 48) / 64,
@@ -166,7 +166,7 @@ const XLviLoader = ({
       (sizePassed * 48) / 64,
       (sizePassed * 48) / 64,
       (sizePassed * 48) / 64,
-      (sizePassed * 48) / 64,
+      (sizePassed * 48) / 64
     ],
     h: [
       (sizePassed * 48) / 64,
@@ -177,7 +177,7 @@ const XLviLoader = ({
       (sizePassed * 48) / 64,
       (sizePassed * 112) / 64,
       (sizePassed * 48) / 64,
-      (sizePassed * 48) / 64,
+      (sizePassed * 48) / 64
     ],
     mt: [
       (sizePassed * 64) / 64,
@@ -188,12 +188,12 @@ const XLviLoader = ({
       (sizePassed * 64) / 64,
       0,
       0,
-      0,
+      0
     ],
-    ml: [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  };
+    ml: [0, 0, 0, 0, 0, 0, 0, 0, 0]
+  }
 
-  let anim2Params = {
+  const anim2Params = {
     w: [
       (sizePassed * 48) / 64,
       (sizePassed * 48) / 64,
@@ -203,7 +203,7 @@ const XLviLoader = ({
       (sizePassed * 48) / 64,
       (sizePassed * 48) / 64,
       (sizePassed * 48) / 64,
-      (sizePassed * 48) / 64,
+      (sizePassed * 48) / 64
     ],
     h: [
       (sizePassed * 48) / 64,
@@ -214,7 +214,7 @@ const XLviLoader = ({
       (sizePassed * 48) / 64,
       (sizePassed * 48) / 64,
       (sizePassed * 48) / 64,
-      (sizePassed * 48) / 64,
+      (sizePassed * 48) / 64
     ],
     mt: [0, 0, 0, 0, 0, 0, 0, 0, 0],
     ml: [
@@ -226,11 +226,11 @@ const XLviLoader = ({
       (sizePassed * 64) / 64,
       (sizePassed * 64) / 64,
       (sizePassed * 64) / 64,
-      (sizePassed * 64) / 64,
-    ],
-  };
+      (sizePassed * 64) / 64
+    ]
+  }
 
-  let anim3Params = {
+  const anim3Params = {
     w: [
       (sizePassed * 48) / 64,
       (sizePassed * 48) / 64,
@@ -240,7 +240,7 @@ const XLviLoader = ({
       (sizePassed * 48) / 64,
       (sizePassed * 48) / 64,
       (sizePassed * 48) / 64,
-      (sizePassed * 112) / 64,
+      (sizePassed * 112) / 64
     ],
     h: [
       (sizePassed * 48) / 64,
@@ -251,7 +251,7 @@ const XLviLoader = ({
       (sizePassed * 48) / 64,
       (sizePassed * 48) / 64,
       (sizePassed * 48) / 64,
-      (sizePassed * 48) / 64,
+      (sizePassed * 48) / 64
     ],
     mt: [
       0,
@@ -262,7 +262,7 @@ const XLviLoader = ({
       (sizePassed * 64) / 64,
       (sizePassed * 64) / 64,
       (sizePassed * 64) / 64,
-      (sizePassed * 64) / 64,
+      (sizePassed * 64) / 64
     ],
     ml: [
       (sizePassed * 64) / 64,
@@ -273,9 +273,9 @@ const XLviLoader = ({
       (sizePassed * 64) / 64,
       (sizePassed * 64) / 64,
       (sizePassed * 64) / 64,
-      0,
-    ],
-  };
+      0
+    ]
+  }
 
   return (
     <StyledContainer
@@ -289,26 +289,26 @@ const XLviLoader = ({
         sizeBorderThickness={sizeBorderThickness}
         borderColor={colorsToFill[0]}
         animParams={anim1Params}
-        className="box1"
-      ></StyledBox>
+        className='box1'
+      />
       <StyledBox
         boxParams={box2Params}
         sizeBorderRadius={sizeBorderRadius}
         sizeBorderThickness={sizeBorderThickness}
         borderColor={colorsToFill[1]}
         animParams={anim2Params}
-        className="box2"
-      ></StyledBox>
+        className='box2'
+      />
       <StyledBox
         boxParams={box3Params}
         sizeBorderRadius={sizeBorderRadius}
         sizeBorderThickness={sizeBorderThickness}
         borderColor={colorsToFill[2]}
         animParams={anim3Params}
-        className="box3"
-      ></StyledBox>
+        className='box3'
+      />
     </StyledContainer>
-  );
-};
+  )
+}
 
-export default XLviLoader;
+export default XLviLoader
