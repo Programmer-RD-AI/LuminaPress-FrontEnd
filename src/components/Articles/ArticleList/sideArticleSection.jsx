@@ -1,10 +1,10 @@
-import PropTypes from "prop-types";
-import styles from "../../../styles/components/articlelist.module.scss";
+import PropTypes from 'prop-types'
+import styles from '../../../styles/components/articlelist.module.scss'
 
-export default function SideArticleSection({
+export default function SideArticleSection ({
   articles,
   articleType,
-  handleReadMore,
+  handleReadMore
 }) {
   return (
     <div className={styles.side_article_section}>
@@ -15,7 +15,7 @@ export default function SideArticleSection({
             className={styles.news}
             key={article.id}
             onClick={() => handleReadMore(article.id)}
-            style={{ marginBottom: "12px" }}
+            style={{ marginBottom: '12px' }}
           >
             <div className={styles.news_title}>
               <span>{article.title.substring(0, 100)}...</span>
@@ -31,7 +31,7 @@ export default function SideArticleSection({
         ))}
       </div>
     </div>
-  );
+  )
 }
 
 SideArticleSection.propTypes = {
@@ -39,9 +39,9 @@ SideArticleSection.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
-      description: PropTypes.string, // Optional
+      description: PropTypes.string // Optional
     })
   ).isRequired,
   articleType: PropTypes.string.isRequired,
-  handleReadMore: PropTypes.func.isRequired,
-};
+  handleReadMore: PropTypes.func.isRequired
+}

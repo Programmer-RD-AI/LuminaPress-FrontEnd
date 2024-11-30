@@ -1,9 +1,9 @@
-import ArticleList from "../components/Articles/ArticleList/articleList";
+import ArticleList from '../components/Articles/ArticleList/articleList'
 
 const HomePage = () => (
   <>
     <ArticleList />
   </>
-);
+)
 
-export default HomePage;
+export default HomePage

@@ -1,91 +1,90 @@
-import  { useState } from "react";
+import { useState } from 'react'
 import {
   FaSearch,
   FaSignOutAlt,
   FaUser,
   FaUserCircle,
   FaMoon,
-  FaSun,
-} from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useTheme } from "../hooks/useTheme";
-import styles from "../styles/components/navbar.module.css";
-import { signOut } from "../redux/slices/authSlice";
-import { useArticles } from "../hooks/useArticles";
-import { useNavbar } from "../hooks/useNavbar";
-import DOMPurify from 'dompurify';
+  FaSun
+} from 'react-icons/fa'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useTheme } from '../hooks/useTheme'
+import styles from '../styles/components/navbar.module.css'
+import { signOut } from '../redux/slices/authSlice'
+import { useArticles } from '../hooks/useArticles'
+import { useNavbar } from '../hooks/useNavbar'
+import DOMPurify from 'dompurify'
 
-export default function Navbar() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+export default function Navbar () {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false)
+  const [searchTerm, setSearchTerm] = useState('')
 
   // Theme hook
-  const { themeToggle, isDarkMode } = useTheme();
+  const { themeToggle, isDarkMode } = useTheme()
 
   const possibleLabels = [
-    "Politics",
-    "Economy",
-    "Technology",
-    "Health",
-    "Science",
-    "Environment",
-    "Education",
-    "Sports",
-    "Entertainment",
-    "Culture",
-    "Business",
-    "Lifestyle",
-    "Travel",
-  ];
+    'Politics',
+    'Economy',
+    'Technology',
+    'Health',
+    'Science',
+    'Environment',
+    'Education',
+    'Sports',
+    'Entertainment',
+    'Culture',
+    'Business',
+    'Lifestyle',
+    'Travel'
+  ]
 
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
-  const { handleFetchArticles } = useArticles();
+  const { isAuthenticated, user } = useSelector((state) => state.auth)
+  const { handleFetchArticles } = useArticles()
 
-  const { activeOn } = useNavbar();
-  const userId = useSelector((state) => state.auth.user);
+  const { activeOn } = useNavbar()
+  const userId = useSelector((state) => state.auth.user)
 
   const handleCategoryClick = (category) => {
-    setShowDropdown(false);
-    handleFetchArticles({ tag: category });
-  };
+    setShowDropdown(false)
+    handleFetchArticles({ tag: category })
+  }
 
   const handleSearch = (event) => {
-    const searchQuery = event.target.value;
-    setSearchTerm(DOMPurify.sanitize(searchQuery));
+    const searchQuery = event.target.value
+    setSearchTerm(DOMPurify.sanitize(searchQuery))
 
     if (searchQuery.length >= 3) {
-      handleFetchArticles({ query: searchQuery }, navigate);
+      handleFetchArticles({ query: searchQuery }, navigate)
     }
-  };
+  }
 
   return (
     <div className={styles.header}>
       <div className={styles.logo_wrapper}>
-        <img src="/public/logo.png" alt="Logo" width={50} height={50} />
+        <img src='/public/logo.png' alt='Logo' width={50} height={50} />
         <span className={styles.logoText}>LuminaPress</span>
       </div>
       <nav className={styles.nav}>
         <div className={styles.navItems}>
           {/* Navigation Links */}
-          {["Home", "New", "Popular", "Trending"].map((item) => (
+          {['Home', 'New', 'Popular', 'Trending'].map((item) => (
             <span
               key={item.toLowerCase()}
-              className={`${styles.navLink} ${activeOn === item.toLowerCase() ? styles.active : ""}`}
+              className={`${styles.navLink} ${activeOn === item.toLowerCase() ? styles.active : ''}`}
               onClick={() =>
                 handleFetchArticles(
                   {
                     type:
-                      item.toLowerCase() === "home"
-                        ? "new"
-                        : item.toLowerCase(),
+                      item.toLowerCase() === 'home'
+                        ? 'new'
+                        : item.toLowerCase()
                   },
                   navigate
-                )
-              }
+                )}
             >
               {item}
             </span>
@@ -117,7 +116,7 @@ export default function Navbar() {
           <span
             className={styles.themeToggle}
             onClick={themeToggle}
-            title={`Switch to ${isDarkMode ? "Light" : "Dark"} Mode`}
+            title={`Switch to ${isDarkMode ? 'Light' : 'Dark'} Mode`}
           >
             {isDarkMode ? <FaSun /> : <FaMoon />}
           </span>
@@ -129,62 +128,64 @@ export default function Navbar() {
             <FaSearch />
           </span>
           <input
-            type="text"
+            type='text'
             value={searchTerm}
             onChange={handleSearch}
             className={styles.searchInput}
-            placeholder="Search articles..."
+            placeholder='Search articles...'
           />
 
           {/* Authentication Section */}
           <div className={styles.authSection}>
-            {isAuthenticated ? (
-              <div
-                className={styles.profileWrapper}
-                onMouseEnter={() => setShowDropdown(true)}
-                onMouseLeave={() => setShowDropdown(false)}
-              >
-                <div className={styles.profileInfo}>
-                  <FaUserCircle className={styles.profileIcon} />
-                  <span className={styles.profileName}>
-                    {user?.name || "User"}
-                  </span>
-                </div>
-                {showDropdown && (
-                  <div className={styles.profileDropdown}>
-                    <Link
-                      to={`/p/${userId}`}
-                      className={styles.profileDropdownItem}
-                    >
-                      <FaUser size={14} />
-                      View Profile
-                    </Link>
-                    <button
-                      onClick={() => {
-                        dispatch(signOut());
-                        setShowDropdown(false);
-                      }}
-                      className={styles.profileDropdownItem}
-                    >
-                      <FaSignOutAlt size={14} />
-                      Logout
-                    </button>
+            {isAuthenticated
+              ? (
+                <div
+                  className={styles.profileWrapper}
+                  onMouseEnter={() => setShowDropdown(true)}
+                  onMouseLeave={() => setShowDropdown(false)}
+                >
+                  <div className={styles.profileInfo}>
+                    <FaUserCircle className={styles.profileIcon} />
+                    <span className={styles.profileName}>
+                      {user?.name || 'User'}
+                    </span>
                   </div>
+                  {showDropdown && (
+                    <div className={styles.profileDropdown}>
+                      <Link
+                        to={`/p/${userId}`}
+                        className={styles.profileDropdownItem}
+                      >
+                        <FaUser size={14} />
+                        View Profile
+                      </Link>
+                      <button
+                        onClick={() => {
+                          dispatch(signOut())
+                          setShowDropdown(false)
+                        }}
+                        className={styles.profileDropdownItem}
+                      >
+                        <FaSignOutAlt size={14} />
+                        Logout
+                      </button>
+                    </div>
+                  )}
+                </div>
+                )
+              : (
+                <>
+                  <Link to='/login' className={styles.loginButton}>
+                    Login
+                  </Link>
+                  <Link to='/signup' className={styles.signupButton}>
+                    Signup
+                  </Link>
+                </>
                 )}
-              </div>
-            ) : (
-              <>
-                <Link to="/login" className={styles.loginButton}>
-                  Login
-                </Link>
-                <Link to="/signup" className={styles.signupButton}>
-                  Signup
-                </Link>
-              </>
-            )}
           </div>
         </div>
       </nav>
     </div>
-  );
+  )
 }

@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Container, Typography, Button, Box } from "@mui/material";
-import { motion } from "framer-motion";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Container, Typography, Button, Box } from '@mui/material'
+import { motion } from 'framer-motion'
 
 const NotFoundPage = () => {
   return (
@@ -11,12 +11,12 @@ const NotFoundPage = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       sx={{
-        textAlign: "center",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
+        textAlign: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh'
       }}
     >
       <Typography
@@ -24,8 +24,8 @@ const NotFoundPage = () => {
         initial={{ y: -50 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        variant="h1"
-        sx={{ fontWeight: "bold", fontSize: "4rem", mb: 2 }}
+        variant='h1'
+        sx={{ fontWeight: 'bold', fontSize: '4rem', mb: 2 }}
       >
         404
       </Typography>
@@ -34,7 +34,7 @@ const NotFoundPage = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 0.5 }}
-        variant="h5"
+        variant='h5'
         sx={{ mb: 3 }}
       >
         Oops! The page you're looking for doesn't exist.
@@ -48,16 +48,16 @@ const NotFoundPage = () => {
       >
         <Button
           component={Link}
-          to="/"
-          variant="contained"
-          color="primary"
-          sx={{ fontWeight: "bold", px: 4, py: 1.5 }}
+          to='/'
+          variant='contained'
+          color='primary'
+          sx={{ fontWeight: 'bold', px: 4, py: 1.5 }}
         >
           Go to Homepage
         </Button>
       </Box>
     </Container>
-  );
-};
+  )
+}
 
-export default NotFoundPage;
+export default NotFoundPage

@@ -1,6 +1,6 @@
 // API/articles.js
-import axios from "axios";
-import { apiHeader, baseUrl } from "../../config/apiConfig";
+import axios from 'axios'
+import { apiHeader, baseUrl } from '../../config/apiConfig'
 
 // Log article view
 export const logArticleView = async (userId, articleId) => {
@@ -8,10 +8,10 @@ export const logArticleView = async (userId, articleId) => {
     const response = await axios.post(`${baseUrl}/articles/views`, {
       userId,
       articleId,
-      headers: apiHeader,
-    });
-    console.log("Article view logged:", response.data);
+      headers: apiHeader
+    })
+    console.log('Article view logged:', response.data)
   } catch (error) {
-    console.error("Error logging article view:", error);
+    console.error('Error logging article view:', error)
   }
-};
+}
