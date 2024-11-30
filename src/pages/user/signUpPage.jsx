@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import {
   Button,
   CssBaseline,
@@ -7,83 +7,83 @@ import {
   Grid,
   Box,
   Typography,
-  Container,
-} from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { motion } from "framer-motion";
-import logo from "../../assets/images/logo.svg";
-import SnackbarComponent from "../../components/snackbar"; // Import the custom Snackbar component
-import { validateForm } from "../../utils/validateForm";
-import { useSnackbar } from "../../hooks/useSnackbar";
-import { useUserAuth } from "../../hooks/Auth/useUserAuth";
-import DOMPurify from "dompurify";
+  Container
+} from '@mui/material'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { motion } from 'framer-motion'
+import logo from '../../assets/images/logo.svg'
+import SnackbarComponent from '../../components/snackbar' // Import the custom Snackbar component
+import { validateForm } from '../../utils/validateForm'
+import { useSnackbar } from '../../hooks/useSnackbar'
+import { useUserAuth } from '../../hooks/Auth/useUserAuth'
+import DOMPurify from 'dompurify'
 
 const theme = createTheme({
   palette: {
-    mode: "dark",
-    primary: { main: "#ffffff" },
-    background: { default: "#0d1117" },
-    text: { primary: "#ffffff", secondary: "#b3b3b3" },
+    mode: 'dark',
+    primary: { main: '#ffffff' },
+    background: { default: '#0d1117' },
+    text: { primary: '#ffffff', secondary: '#b3b3b3' }
   },
   typography: {
-    fontFamily: "Arial, sans-serif",
+    fontFamily: 'Arial, sans-serif',
     h5: { fontWeight: 700 },
-    body1: { fontSize: "1rem", lineHeight: 1.5 },
-  },
-});
+    body1: { fontSize: '1rem', lineHeight: 1.5 }
+  }
+})
 
 const SignUpPage = () => {
-  const navigate = useNavigate();
-  const [formValues, setFormValues] = useState({ email: "", password: "" });
-  const [formErrors, setFormErrors] = useState({ email: "", password: "" });
-  const { show } = useSnackbar();
-  const { signUpUser } = useUserAuth();
+  const navigate = useNavigate()
+  const [formValues, setFormValues] = useState({ email: '', password: '' })
+  const [formErrors, setFormErrors] = useState({ email: '', password: '' })
+  const { show } = useSnackbar()
+  const { signUpUser } = useUserAuth()
   const handleInputChange = (e) => {
-    setFormValues({ ...formValues, [e.target.name]: e.target.value });
-  };
+    setFormValues({ ...formValues, [e.target.name]: e.target.value })
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!validateForm(setFormErrors, formValues)) {
-      show("Invalid form inputs", "error");
-      return;
+      show('Invalid form inputs', 'error')
+      return
     }
 
     try {
       signUpUser(
         DOMPurify.sanitize(formValues.email),
         DOMPurify.sanitize(formValues.password)
-      );
-      show("Registration successful!", "success");
-      setTimeout(() => navigate("/home"), 1500); // Navigate after a delay
+      )
+      show('Registration successful!', 'success')
+      setTimeout(() => navigate('/home'), 1500) // Navigate after a delay
     } catch (error) {
-      show(error.message || "Registration failed", "error");
+      show(error.message || 'Registration failed', 'error')
     }
-  };
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container
-        component="main"
-        maxWidth="xs"
+        component='main'
+        maxWidth='xs'
         sx={{
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          height: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
         }}
       >
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            background: "#1e293b",
-            padding: "40px",
-            borderRadius: "12px",
-            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.3)",
-            width: "100%",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            background: '#1e293b',
+            padding: '40px',
+            borderRadius: '12px',
+            boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)',
+            width: '100%'
           }}
           component={motion.div}
           initial={{ opacity: 0, y: 50 }}
@@ -97,39 +97,39 @@ const SignUpPage = () => {
           >
             <img
               src={logo}
-              alt="Logo"
+              alt='Logo'
               style={{
-                width: "120px",
-                marginBottom: "20px",
+                width: '120px',
+                marginBottom: '20px'
               }}
             />
           </motion.div>
           <Typography
-            component="h1"
-            variant="h5"
-            align="center"
-            sx={{ marginBottom: "20px" }}
+            component='h1'
+            variant='h5'
+            align='center'
+            sx={{ marginBottom: '20px' }}
           >
             Sign up for an account
           </Typography>
           <Box
-            component="form"
+            component='form'
             onSubmit={handleSubmit}
             noValidate
-            sx={{ width: "100%" }}
+            sx={{ width: '100%' }}
           >
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <motion.div
                   whileFocus={{ scale: 1.02 }}
                   whileHover={{ scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 200 }}
+                  transition={{ type: 'spring', stiffness: 200 }}
                 >
                   <TextField
-                    name="email"
+                    name='email'
                     required
                     fullWidth
-                    label="Email Address"
+                    label='Email Address'
                     value={formValues.email}
                     onChange={handleInputChange}
                     error={Boolean(formErrors.email)}
@@ -141,14 +141,14 @@ const SignUpPage = () => {
                 <motion.div
                   whileFocus={{ scale: 1.02 }}
                   whileHover={{ scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 200 }}
+                  transition={{ type: 'spring', stiffness: 200 }}
                 >
                   <TextField
-                    name="password"
+                    name='password'
                     required
                     fullWidth
-                    label="Password"
-                    type="password"
+                    label='Password'
+                    type='password'
                     value={formValues.password}
                     onChange={handleInputChange}
                     error={Boolean(formErrors.password)}
@@ -160,17 +160,17 @@ const SignUpPage = () => {
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 150 }}
+              transition={{ type: 'spring', stiffness: 150 }}
             >
               <Button
-                type="submit"
+                type='submit'
                 fullWidth
-                variant="contained"
+                variant='contained'
                 sx={{
                   mt: 3,
                   mb: 2,
-                  backgroundColor: "#2563eb",
-                  "&:hover": { backgroundColor: "#1d4ed8" },
+                  backgroundColor: '#2563eb',
+                  '&:hover': { backgroundColor: '#1d4ed8' }
                 }}
               >
                 Sign Up
@@ -183,7 +183,7 @@ const SignUpPage = () => {
       {/* Use the custom Snackbar component */}
       <SnackbarComponent />
     </ThemeProvider>
-  );
-};
+  )
+}
 
-export default SignUpPage;
+export default SignUpPage
