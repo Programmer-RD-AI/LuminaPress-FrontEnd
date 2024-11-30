@@ -132,7 +132,7 @@ const SignUpPage = () => {
                     label="Email Address"
                     value={formValues.email}
                     onChange={handleInputChange}
-                    error={!!formErrors.email}
+                    error={Boolean(formErrors.email)}
                     helperText={formErrors.email}
                   />
                 </motion.div>
@@ -151,7 +151,7 @@ const SignUpPage = () => {
                     type="password"
                     value={formValues.password}
                     onChange={handleInputChange}
-                    error={!!formErrors.password}
+                    error={Boolean(formErrors.password)}
                     helperText={formErrors.password}
                   />
                 </motion.div>

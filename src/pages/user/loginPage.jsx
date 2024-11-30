@@ -121,7 +121,7 @@ const LoginPage = () => {
                   label="Email Address"
                   value={formValues.email}
                   onChange={handleInputChange}
-                  error={!!formErrors.email}
+                  error={Boolean(formErrors.email)}
                   helperText={formErrors.email}
                 />
               </Grid>
@@ -134,7 +134,7 @@ const LoginPage = () => {
                   type="password"
                   value={formValues.password}
                   onChange={handleInputChange}
-                  error={!!formErrors.password}
+                  error={Boolean(formErrors.password)}
                   helperText={formErrors.password}
                 />
               </Grid>
