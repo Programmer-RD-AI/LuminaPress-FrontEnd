@@ -13,7 +13,7 @@ const Comments = ({ articleId, initialComments }) => {
   const [error, setError] = useState("");
   const [comments, setComments] = useState(
     // Ensure comments is always an array
-    Array.isArray(initialComments) ? initialComments : []
+    Array.isArray(initialComments) ? initialComments : [],
   );
 
   const handleSubmit = async (e) => {
@@ -25,7 +25,7 @@ const Comments = ({ articleId, initialComments }) => {
       const response = await addComment(
         articleId,
         userId,
-        DOMPurify.sanitize(comment)
+        DOMPurify.sanitize(comment),
       );
 
       const data = await response.json();

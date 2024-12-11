@@ -23,7 +23,7 @@ const ArticlePage = () => {
 
   // Get bookmarked article IDs from Redux store
   const bookmarkedArticleIds = useSelector(
-    (state) => state.bookmarks.articleIds
+    (state) => state.bookmarks.articleIds,
   );
 
   const [article, setArticle] = useState(null);
@@ -47,7 +47,7 @@ const ArticlePage = () => {
           fetchArticles({
             endpoint: "article",
             params: { articleId },
-          })
+          }),
         );
         setArticle(response.payload || null);
       } catch (error) {
@@ -80,7 +80,7 @@ const ArticlePage = () => {
       // Show success snackbar
       showSnackbar(
         "Thank you for submitting your article link! Our team will review it soon.",
-        "success"
+        "success",
       );
 
       // Reset link input
@@ -100,13 +100,13 @@ const ArticlePage = () => {
 
   const handleNextImage = () => {
     setCurrentImageIndex((prev) =>
-      prev === (article?.Images?.length || 1) - 1 ? 0 : prev + 1
+      prev === (article?.Images?.length || 1) - 1 ? 0 : prev + 1,
     );
   };
 
   const handlePrevImage = () => {
     setCurrentImageIndex((prev) =>
-      prev === 0 ? (article?.Images?.length || 1) - 1 : prev - 1
+      prev === 0 ? (article?.Images?.length || 1) - 1 : prev - 1,
     );
   };
 
@@ -149,7 +149,7 @@ const ArticlePage = () => {
             }
             alt="Hero"
           />
-          <div className="image-overlay"></div>
+          <div className="image-overlay" />
         </div>
 
         <div className="title-container">

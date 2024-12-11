@@ -141,8 +141,8 @@ const AdminPage = () => {
       // Update local state
       setArticles(
         articles.map((article) =>
-          article.id === articleId ? { ...article, isHidden: true } : article
-        )
+          article.id === articleId ? { ...article, isHidden: true } : article,
+        ),
       );
     } catch (error) {
       console.error("Error hiding article:", error);
@@ -174,8 +174,8 @@ const AdminPage = () => {
       // Update local state
       setArticles(
         articles.map((article) =>
-          article.id === articleId ? { ...article, isHidden: false } : article
-        )
+          article.id === articleId ? { ...article, isHidden: false } : article,
+        ),
       );
     } catch (error) {
       console.error("Error unhiding article:", error);
@@ -197,20 +197,20 @@ const AdminPage = () => {
         </div>
         <nav className="sidebar-nav">
           <button data-testid="nav-dashboard" className="nav-item active">
-            <i className="icon-dashboard"></i> Dashboard
+            <i className="icon-dashboard" /> Dashboard
           </button>
           <button data-testid="nav-api-management" className="nav-item">
-            <i className="icon-api"></i> API Management
+            <i className="icon-api" /> API Management
           </button>
           <button data-testid="nav-configurations" className="nav-item">
-            <i className="icon-config"></i> Configurations
+            <i className="icon-config" /> Configurations
           </button>
           <button
             data-testid="nav-logout"
             className="nav-item logout"
             onClick={handleLogout}
           >
-            <i className="icon-logout"></i> Logout
+            <i className="icon-logout" /> Logout
           </button>
         </nav>
       </div>

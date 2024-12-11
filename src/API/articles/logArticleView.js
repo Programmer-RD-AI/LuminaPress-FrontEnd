@@ -20,7 +20,7 @@ export const logArticleView = async (userId, articleId) => {
       // Handle non-200 responses
       const errorBody = await response.text();
       throw new Error(
-        `HTTP error! status: ${response.status}, body: ${errorBody}`
+        `HTTP error! status: ${response.status}, body: ${errorBody}`,
       );
     }
 

@@ -17,7 +17,7 @@ const store = configureStore({
     admin: adminReducer,
     snackbar: snackbarReducer, // Add the snackbar slice here
     theme: themeReducer,
-    bookmarks: bookmarksReducer
+    bookmarks: bookmarksReducer,
   },
 });
 

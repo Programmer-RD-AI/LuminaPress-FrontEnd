@@ -23,7 +23,7 @@ export default function ProfilePage() {
 
   // Get bookmarked article IDs from Redux store
   const bookmarkedArticleIds = useSelector(
-    (state) => state.bookmarks.articleIds
+    (state) => state.bookmarks.articleIds,
   );
 
   const currentUserId = useSelector((state) => state.auth.user);
@@ -39,7 +39,7 @@ export default function ProfilePage() {
               "Content-Type": "application/json",
               ...apiHeader,
             },
-          }
+          },
         );
 
         if (!response.ok) {
@@ -52,7 +52,7 @@ export default function ProfilePage() {
         const articlesPromises = data.viewedArticles.map((articleId) =>
           fetch(`${baseUrl}/articles/article?articleId=${articleId}`, {
             headers: apiHeader,
-          }).then((res) => res.json())
+          }).then((res) => res.json()),
         );
 
         const articlesData = await Promise.all(articlesPromises);
@@ -107,29 +107,32 @@ export default function ProfilePage() {
     navigate(`/a/${articleId}`);
   };
 
-  if (loading)
+  if (loading) {
     return (
       <div className="profile-loading">
-        <div className="spinner"></div>
+        <div className="spinner" />
         <p>Loading profile...</p>
       </div>
     );
+  }
 
-  if (error)
+  if (error) {
     return (
       <div className="profile-error">
         <h2>Error loading profile</h2>
         <p>{error}</p>
       </div>
     );
+  }
 
-  if (!profile)
+  if (!profile) {
     return (
       <div className="profile-not-found">
         <h2>Profile not found</h2>
         <p>The requested profile does not exist or is private.</p>
       </div>
     );
+  }
 
   return (
     <div className="profile-universe">
@@ -258,7 +261,7 @@ export default function ProfilePage() {
                     <div className="articles-grid">
                       {articles
                         .filter((article) =>
-                          bookmarkedArticleIds.includes(article.id)
+                          bookmarkedArticleIds.includes(article.id),
                         )
                         .map((article) => (
                           <div key={article.id} className="article-card">

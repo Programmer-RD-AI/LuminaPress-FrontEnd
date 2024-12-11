@@ -29,7 +29,10 @@ export const useArticles = () => {
         await dispatch(fetchArticles({ params: { type: parameters.type } }));
       } else if (parameters.query) {
         await dispatch(
-          fetchArticles({ endpoint: "search", params: { q: parameters.query } })
+          fetchArticles({
+            endpoint: "search",
+            params: { q: parameters.query },
+          }),
         );
       } else if (parameters.tag) {
         await dispatch(fetchArticles({ params: { tag: parameters.tag } }));

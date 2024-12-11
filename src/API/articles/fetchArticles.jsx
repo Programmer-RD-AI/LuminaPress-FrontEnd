@@ -6,7 +6,7 @@ export const fetchArticles = createAsyncThunk(
   "articles/fetchArticles",
   async (
     { endpoint = "articles", params = {}, set = true },
-    { rejectWithValue, dispatch, getState }
+    { rejectWithValue, dispatch, getState },
   ) => {
     try {
       // Access user from Redux state
@@ -43,5 +43,5 @@ export const fetchArticles = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message);
     }
-  }
+  },
 );
