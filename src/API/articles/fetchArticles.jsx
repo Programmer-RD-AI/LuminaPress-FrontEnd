@@ -12,7 +12,7 @@ export const fetchArticles = createAsyncThunk(
       // Access user from Redux state
       const state = getState();
       const user = state.auth.user;
-      console.log(user);
+
       // Append userId to params
       if (user) {
         params.userId = user; // Assuming `user.id` contains the userId
@@ -21,18 +21,25 @@ export const fetchArticles = createAsyncThunk(
       const queryString = new URLSearchParams(params).toString();
       const url = `${baseUrl}/articles/${endpoint}${queryString ? `?${queryString}` : ""}`;
       console.log(url);
-
       const response = await fetch(url, { headers: apiHeader });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const data = await response.json();
-      if (set) {
+      console.log(data);
+      // Only update state if articles exist and are not empty
+      if (set && data.articles && data.articles.length > 0) {
         dispatch(setArticles(data.articles));
-        dispatch(setArticleType(queryString.split("=")[1]));
+
+        // Only set article type if there's a valid query parameter
+        const articleTypeParam = queryString.split("=")[1];
+        if (articleTypeParam) {
+          dispatch(setArticleType(articleTypeParam));
+        }
       }
-      return data; // Return data
+
+      return data; // Return data for potential further processing
     } catch (error) {
       return rejectWithValue(error.message);
     }

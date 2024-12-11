@@ -6,6 +6,7 @@ import loaderReducer from "./slices/loaderSlice";
 import snackbarReducer from "./slices/snackbarSlice";
 import adminReducer from "./slices/adminSlice";
 import themeReducer from "./slices/themeSlice";
+import bookmarksReducer from "./slices/bookmarkSlice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     admin: adminReducer,
     snackbar: snackbarReducer, // Add the snackbar slice here
     theme: themeReducer,
+    bookmarks: bookmarksReducer
   },
 });
 

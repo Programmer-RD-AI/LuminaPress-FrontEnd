@@ -1,27 +1,33 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import {
-  BookOpen,
-  Lock,
-  Unlock,
-  Eye,
-  MessageSquare,
-  ThumbsUp,
-} from "lucide-react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Bookmark, Trash2, BookOpen } from "lucide-react";
 import "../styles/components/ProfilePage.css";
 import { apiHeader, baseUrl } from "../config/apiConfig";
-import { useSelector } from "react-redux";
+import {
+  addBookmark,
+  removeBookmark,
+  clearBookmarks,
+} from "../redux/slices/bookmarkSlice.js";
 
 export default function ProfilePage() {
   const { userId } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [profile, setProfile] = useState(null);
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState("articles");
 
+  // Get bookmarked article IDs from Redux store
+  const bookmarkedArticleIds = useSelector(
+    (state) => state.bookmarks.articleIds
+  );
+
   const currentUserId = useSelector((state) => state.auth.user);
-  console.log(currentUserId);
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -44,7 +50,7 @@ export default function ProfilePage() {
         setProfile(data);
 
         const articlesPromises = data.viewedArticles.map((articleId) =>
-          fetch(`${baseUrl}/articles?articleId=${articleId}`, {
+          fetch(`${baseUrl}/articles/article?articleId=${articleId}`, {
             headers: apiHeader,
           }).then((res) => res.json())
         );
@@ -85,6 +91,22 @@ export default function ProfilePage() {
     }
   };
 
+  const handleBookmarkToggle = (article) => {
+    if (bookmarkedArticleIds.includes(article.id)) {
+      dispatch(removeBookmark(article.id));
+    } else {
+      dispatch(addBookmark(article.id));
+    }
+  };
+
+  const handleClearBookmarks = () => {
+    dispatch(clearBookmarks());
+  };
+
+  const handleArticleClick = (articleId) => {
+    navigate(`/a/${articleId}`);
+  };
+
   if (loading)
     return (
       <div className="profile-loading">
@@ -110,111 +132,169 @@ export default function ProfilePage() {
     );
 
   return (
-    <div className="profile-container">
-      <div className="profile-header">
-        <div className="profile-avatar">
-          <img
-            src={`https://api.dicebear.com/6.x/initials/svg?seed=${profile.email}`}
-            alt="Profile avatar"
-          />
-        </div>
-        <div className="profile-info">
-          <h1>{profile.email}</h1>
-          {currentUserId === userId && (
-            <button className="privacy-toggle" onClick={togglePrivacy}>
+    <div className="profile-universe">
+      <div className="profile-container">
+        <div className="profile-header">
+          <div className="cosmic-avatar">
+            <img
+              src={`https://api.dicebear.com/6.x/initials/svg?seed=${profile.email}`}
+              alt="Profile avatar"
+              className="avatar-image"
+            />
+          </div>
+
+          <div className="profile-details">
+            <h1 className="profile-name">{profile.email.split("@")[0]}</h1>
+            <button className="profile-meta" onClick={togglePrivacy}>
               {profile.private ? (
-                <>
-                  <Lock className="icon" /> Private
-                </>
+                <span className="privacy-badge private">Private Profile</span>
               ) : (
-                <>
-                  <Unlock className="icon" /> Public
-                </>
+                <span className="privacy-badge public">Public Profile</span>
               )}
             </button>
-          )}
+          </div>
         </div>
-      </div>
 
-      <div className="profile-stats">
-        <div className="stat-card">
-          <BookOpen className="icon" />
-          <div className="stat-info">
-            <h3>{articles.length}</h3>
-            <p>Articles Read</p>
-          </div>
-        </div>
-        <div className="stat-card">
-          <MessageSquare className="icon" />
-          <div className="stat-info">
-            <h3>{profile.commentedArticles?.length || 0}</h3>
-            <p>Articles Commented</p>
-          </div>
-        </div>
-        <div className="stat-card">
-          <Eye className="icon" />
-          <div className="stat-info">
-            <h3>{profile.viewedArticles?.length || 0}</h3>
-            <p>Total Views</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="content-tabs">
-        <button
-          className={`tab-button ${activeTab === "articles" ? "active" : ""}`}
-          onClick={() => setActiveTab("articles")}
-        >
-          Recent Reads
-        </button>
-        <button
-          className={`tab-button ${activeTab === "comments" ? "active" : ""}`}
-          onClick={() => setActiveTab("comments")}
-        >
-          Comments
-        </button>
-      </div>
-
-      {activeTab === "articles" ? (
-        <div className="articles-section">
-          <div className="articles-grid">
-            {articles.map((article) => (
-              <div key={article.id} className="article-card">
-                <h3>{article.title}</h3>
-                <p>{article.description}</p>
-                <div className="article-meta">
-                  <span>
-                    {new Date(article.view_history[0]).toLocaleDateString()}
-                  </span>
-                  <span>{article.views} views</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      ) : (
-        <div className="comments-section">
-          {profile.commentedArticles?.map((article) => (
-            <div key={article.articleId} className="comment-article-group">
-              <h3 className="article-title">{article.articleTitle}</h3>
-              {article.comments.map((comment, index) => (
-                <div key={index} className="comment-card">
-                  <p>{comment.content}</p>
-                  <div className="comment-meta">
-                    <span>
-                      {new Date(comment.timestamp).toLocaleDateString()}
-                    </span>
-                    <span className="likes">
-                      <ThumbsUp className="icon" size={14} />
-                      {comment.likes}
-                    </span>
-                  </div>
-                </div>
-              ))}
+        <div className="stats-grid">
+          <div className="stat-card">
+            <div className="stat-icon">📖</div>
+            <div className="stat-content">
+              <h3>{articles.length}</h3>
+              <p>Articles Read</p>
             </div>
-          ))}
+          </div>
+          <div className="stat-card">
+            <div className="stat-icon">💬</div>
+            <div className="stat-content">
+              <h3>0</h3>
+              <p>Comments</p>
+            </div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-icon">👀</div>
+            <div className="stat-content">
+              <h3>{articles.length}</h3>
+              <p>Total Views</p>
+            </div>
+          </div>
         </div>
-      )}
+
+        <div className="content-section">
+          <div className="tab-navigation">
+            <button
+              className={`tab-btn ${activeTab === "articles" ? "active" : ""}`}
+              onClick={() => setActiveTab("articles")}
+            >
+              Recent Reads
+            </button>
+            <button
+              className={`tab-btn ${activeTab === "bookmarks" ? "active" : ""}`}
+              onClick={() => setActiveTab("bookmarks")}
+            >
+              Bookmarks
+            </button>
+            <button
+              className={`tab-btn ${activeTab === "comments" ? "active" : ""}`}
+              onClick={() => setActiveTab("comments")}
+            >
+              Comments
+            </button>
+          </div>
+
+          <div className="content-display">
+            {activeTab === "articles" && (
+              <div className="articles-grid">
+                {articles.map((article) => (
+                  <div key={article.id} className="article-card">
+                    <div className="article-card-header">
+                      <h3 onClick={() => handleArticleClick(article.id)}>
+                        {article.title}
+                      </h3>
+                      <button
+                        className="bookmark-btn"
+                        onClick={() => handleBookmarkToggle(article)}
+                      >
+                        <Bookmark
+                          color={
+                            bookmarkedArticleIds.includes(article.id)
+                              ? "yellow"
+                              : "gray"
+                          }
+                          fill={
+                            bookmarkedArticleIds.includes(article.id)
+                              ? "yellow"
+                              : "none"
+                          }
+                        />
+                      </button>
+                    </div>
+                    <p>{article.description}</p>
+                    <div className="article-meta">
+                      <span>{article.views} Views</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {activeTab === "bookmarks" && (
+              <div className="bookmarks-section">
+                {bookmarkedArticleIds.length === 0 ? (
+                  <div className="empty-state">
+                    <BookOpen size={48} />
+                    <p>No bookmarks yet. Start exploring!</p>
+                  </div>
+                ) : (
+                  <>
+                    <div className="bookmarks-header">
+                      <h3>Bookmarked Articles</h3>
+                      <button
+                        className="clear-bookmarks-btn"
+                        onClick={handleClearBookmarks}
+                      >
+                        <Trash2 /> Clear All
+                      </button>
+                    </div>
+                    <div className="articles-grid">
+                      {articles
+                        .filter((article) =>
+                          bookmarkedArticleIds.includes(article.id)
+                        )
+                        .map((article) => (
+                          <div key={article.id} className="article-card">
+                            <div className="article-card-header">
+                              <h3
+                                onClick={() => handleArticleClick(article.id)}
+                              >
+                                {article.title}
+                              </h3>
+                              <button
+                                className="bookmark-btn"
+                                onClick={() => handleBookmarkToggle(article)}
+                              >
+                                <Bookmark color="yellow" fill="yellow" />
+                              </button>
+                            </div>
+                            <p>{article.description}</p>
+                            <div className="article-meta">
+                              <span>{article.views} Views</span>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
+
+            {activeTab === "comments" && (
+              <div className="empty-state">
+                <p>No comments yet. Start exploring!</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

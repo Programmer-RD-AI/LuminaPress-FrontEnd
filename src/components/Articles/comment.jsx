@@ -11,7 +11,10 @@ const Comments = ({ articleId, initialComments }) => {
   const { user: userId } = useUserAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
-  const [comments, setComments] = useState(initialComments);
+  const [comments, setComments] = useState(
+    // Ensure comments is always an array
+    Array.isArray(initialComments) ? initialComments : []
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +22,7 @@ const Comments = ({ articleId, initialComments }) => {
     setError("");
 
     try {
-      const response = addComment(
+      const response = await addComment(
         articleId,
         userId,
         DOMPurify.sanitize(comment)
@@ -31,7 +34,8 @@ const Comments = ({ articleId, initialComments }) => {
         throw new Error(data.message || "Failed to post comment");
       }
 
-      setComments(data.comments);
+      // Ensure the returned comments is an array
+      setComments(Array.isArray(data.comments) ? data.comments : []);
       setComment("");
     } catch (err) {
       setError(err.message);
@@ -71,33 +75,19 @@ const Comments = ({ articleId, initialComments }) => {
           <div key={comment.id} className="comment-item">
             <div className="comment-author">
               <img
-                src={comment.userImage}
-                alt={comment.userName}
+                src={`https://api.dicebear.com/6.x/initials/svg?seed=${comment.userId}`}
+                alt={comment.userId}
                 className="author-image"
               />
               <div className="author-info">
-                <h4>{comment.userName}</h4>
+                {/* Use comment.userName instead of comment.userId */}
+                <h4>{comment.userId}</h4>
                 <span className="comment-date">
                   {formatDate(comment.createdAt)}
                 </span>
               </div>
             </div>
             <p className="comment-text">{comment.comment}</p>
-            <div className="comment-actions">
-              <button className="like-button">
-                <svg
-                  className="heart-icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                </svg>
-                <span>{comment.likes}</span>
-              </button>
-              <button className="reply-button">Reply</button>
-            </div>
           </div>
         ))}
       </div>

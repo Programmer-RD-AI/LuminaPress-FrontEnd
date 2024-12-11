@@ -1,10 +1,6 @@
+// useUserAuth.js
 import { useDispatch, useSelector } from "react-redux";
-import {
-  signIn,
-  signOut,
-  setLoading,
-  setError,
-} from "../../redux/slices/authSlice";
+import { signOut, setLoading, setError } from "../../redux/slices/authSlice";
 import { loginUser } from "../../API/users/loginUser";
 import { registerUser } from "../../API/users/registerUser";
 
@@ -18,27 +14,30 @@ export const useUserAuth = () => {
 
   // Sign in a user
   const signInUser = (email, password) => {
-    dispatch(signIn(loginUser(email, password))); // Dispatch the signIn action with user data
+    return dispatch(loginUser({ email, password }));
   };
 
   // Sign out a user
   const signOutUser = () => {
-    dispatch(signOut()); // Dispatch the signOut action
+    dispatch(signOut());
   };
 
   // Set loading state
   const setLoadingState = (loadingState) => {
-    dispatch(setLoading(loadingState)); // Dispatch the setLoading action
+    dispatch(setLoading(loadingState));
   };
 
   // Set error state
   const setErrorState = (errorMessage) => {
-    dispatch(setError(errorMessage)); // Dispatch the setError action
+    dispatch(setError(errorMessage));
   };
 
+  // Sign up a user
   const signUpUser = (email, password) => {
-    dispatch(signIn(registerUser(email, password).user));
+    console.log(email, password);
+    return dispatch(registerUser({ email, password }));
   };
+
   return {
     isAuthenticated,
     user,

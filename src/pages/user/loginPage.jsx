@@ -15,7 +15,7 @@ import logo from "../../assets/images/logo.svg";
 import { validateForm } from "../../utils/validateForm";
 import { useSnackbar } from "../../hooks/useSnackbar";
 import { useUserAuth } from "../../hooks/Auth/useUserAuth";
-import DOMPurify from 'dompurify';
+import DOMPurify from "dompurify";
 
 const theme = createTheme({
   palette: {
@@ -41,14 +41,20 @@ const LoginPage = () => {
   const handleInputChange = (e) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
   };
-
+  // LoginPage.js
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm(setFormErrors, formValues)) {
       try {
-        signInUser(DOMPurify.sanitize(formValues.email), DOMPurify.sanitize(formValues.password));
-        show("Login successful!", "success");
-        setTimeout(() => navigate("/"), 1500);
+        const sanitizedEmail = DOMPurify.sanitize(formValues.email);
+        const sanitizedPassword = DOMPurify.sanitize(formValues.password);
+
+        const result = await signInUser(sanitizedEmail, sanitizedPassword);
+
+        if (result.payload) {
+          show("Login successful!", "success");
+          setTimeout(() => navigate("/"), 1500);
+        }
       } catch (error) {
         show(error.message || "An error occurred. Please try again.", "error");
       }
