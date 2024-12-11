@@ -82,7 +82,7 @@ export default function Navbar() {
                         ? "new"
                         : item.toLowerCase(),
                   },
-                  navigate
+                  navigate,
                 )
               }
             >

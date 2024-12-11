@@ -26,5 +26,5 @@ export const loginUser = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error.message || "An error occurred during login");
     }
-  }
+  },
 );

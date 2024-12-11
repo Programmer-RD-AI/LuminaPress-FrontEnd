@@ -9,7 +9,7 @@ export const useUserAuth = () => {
 
   // Get authentication state from Redux store
   const { isAuthenticated, user, loading, error } = useSelector(
-    (state) => state.auth
+    (state) => state.auth,
   );
 
   // Sign in a user
