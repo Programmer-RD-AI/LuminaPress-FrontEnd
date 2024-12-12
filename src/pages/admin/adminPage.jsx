@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../redux/slices/adminSlice";
 import "../../styles/pages/AdminPage.css";
+import { apiHeader, apiKey, baseUrl } from "../../config/apiConfig";
 
 const AdminPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isAuthenticated, userData } = useSelector((state) => state.admin);
+  const [articles, setArticles] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   // State for API Keys
   const [apiKeys, setApiKeys] = useState([]);
@@ -52,6 +56,7 @@ const AdminPage = () => {
     if (!isAuthenticated) {
       navigate("/admin/login");
     }
+    fetchAllArticles();
   }, [isAuthenticated, navigate]);
 
   const handleLogout = () => {
@@ -89,6 +94,95 @@ const AdminPage = () => {
     };
     setConfigurations([...configurations, config]);
     setNewConfig({ name: "", type: "deployment", value: "" });
+  };
+  // Fetch All Articles
+  const fetchAllArticles = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(`${baseUrl}/articles/hide`, {
+        method: "GET",
+        headers: apiHeader,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch articles");
+      }
+
+      const data = await response.json();
+      setArticles(data.articles || []);
+    } catch (error) {
+      console.error("Error fetching articles:", error);
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Hide Article
+  const hideArticle = async (articleId) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(`${baseUrl}/articles/hide`, {
+        method: "POST",
+        headers: {
+          ...apiHeader,
+          "Content-Type": "application/json", // Ensure content type is JSON
+        },
+        body: JSON.stringify({ articleId }), // Properly stringify the body
+      });
+      console.log(await response.json());
+
+      if (!response.ok) {
+        throw new Error("Failed to hide article");
+      }
+
+      // Update local state
+      setArticles(
+        articles.map((article) =>
+          article.id === articleId ? { ...article, isHidden: true } : article
+        )
+      );
+    } catch (error) {
+      console.error("Error hiding article:", error);
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Unhide Article
+  const unhideArticle = async (articleId) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(`${baseUrl}/articles/hide`, {
+        method: "PUT",
+        headers: {
+          ...apiHeader,
+          "Content-Type": "application/json", // Ensure content type is JSON
+        },
+        body: JSON.stringify({ articleId }), // Properly stringify the body
+      });
+      console.log(await response.json());
+
+      if (!response.ok) {
+        throw new Error("Failed to unhide article");
+      }
+
+      // Update local state
+      setArticles(
+        articles.map((article) =>
+          article.id === articleId ? { ...article, isHidden: false } : article
+        )
+      );
+    } catch (error) {
+      console.error("Error unhiding article:", error);
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const deleteConfiguration = (id) => {
@@ -130,7 +224,49 @@ const AdminPage = () => {
             </span>
           </div>
         </header>
+        <section
+          data-testid="article-management"
+          className="cosmic-section article-management"
+        >
+          <h2>Article Management</h2>
+          {isLoading && <div className="loading">Loading...</div>}
+          {error && <div className="error">{error}</div>}
 
+          <div className="articles-list">
+            {articles.map((article) => (
+              <div key={article.id} className="article-item">
+                <div className="article-details">
+                  <span className="article-id">ID: {article.id}</span>
+                  <span className="article-title">Title: {article.title}</span>
+                  <span
+                    className={`article-status ${article.isHidden ? "hidden" : "visible"}`}
+                  >
+                    Status: {article.isHidden ? "Hidden" : "Visible"}
+                  </span>
+                </div>
+                <div className="article-actions">
+                  {article.isHidden ? (
+                    <button
+                      className="btn-unhide"
+                      onClick={() => unhideArticle(article.id)}
+                      disabled={isLoading}
+                    >
+                      Unhide
+                    </button>
+                  ) : (
+                    <button
+                      className="btn-hide"
+                      onClick={() => hideArticle(article.id)}
+                      disabled={isLoading}
+                    >
+                      Hide
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
         <section
           data-testid="api-management"
           className="cosmic-section api-management"

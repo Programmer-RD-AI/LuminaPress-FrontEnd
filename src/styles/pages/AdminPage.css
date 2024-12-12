@@ -188,3 +188,76 @@ body {
     background-color: rgba(255, 193, 7, 0.2);
     color: #ffc107;
 }
+
+/* Add these styles to your existing CSS file */
+.article-management-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.article-filter {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.article-filter input {
+    flex-grow: 1;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(74, 144, 226, 0.2);
+    color: var(--cosmic-text-light);
+    border-radius: 5px;
+}
+
+.articles-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.article-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid rgba(74, 144, 226, 0.1);
+}
+
+.article-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.article-status {
+    font-size: 0.8em;
+    padding: 3px 8px;
+    border-radius: 12px;
+}
+
+.article-status.visible {
+    background-color: rgba(0, 255, 156, 0.2);
+    color: var(--cosmic-neon-green);
+}
+
+.article-status.hidden {
+    background-color: rgba(255, 107, 107, 0.2);
+    color: #ff6b6b;
+}
+
+.toggle-visibility {
+    background-color: var(--cosmic-bright-blue);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-visibility:hover {
+    background-color: var(--cosmic-neon-green);
+}

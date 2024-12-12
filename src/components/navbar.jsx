@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import {
   FaSearch,
   FaSignOutAlt,
@@ -14,7 +14,7 @@ import styles from "../styles/components/navbar.module.css";
 import { signOut } from "../redux/slices/authSlice";
 import { useArticles } from "../hooks/useArticles";
 import { useNavbar } from "../hooks/useNavbar";
-import DOMPurify from 'dompurify';
+import DOMPurify from "dompurify";
 
 export default function Navbar() {
   const dispatch = useDispatch();
@@ -43,6 +43,7 @@ export default function Navbar() {
   ];
 
   const { isAuthenticated, user } = useSelector((state) => state.auth);
+  console.log(isAuthenticated, user);
   const { handleFetchArticles } = useArticles();
 
   const { activeOn } = useNavbar();
@@ -50,16 +51,14 @@ export default function Navbar() {
 
   const handleCategoryClick = (category) => {
     setShowDropdown(false);
-    handleFetchArticles({ tag: category });
+    handleFetchArticles({ tag: category }, navigate);
   };
 
   const handleSearch = (event) => {
     const searchQuery = event.target.value;
     setSearchTerm(DOMPurify.sanitize(searchQuery));
 
-    if (searchQuery.length >= 3) {
-      handleFetchArticles({ query: searchQuery }, navigate);
-    }
+    handleFetchArticles({ query: searchQuery }, navigate);
   };
 
   return (
